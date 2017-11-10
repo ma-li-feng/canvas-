@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas height="400" width="600"></canvas>
+    <script>
+        var canvas = document.querySelector('canvas')
+        var hb = canvas.getContext('2d')
+        var step = 20
+        for(var i =1 ; i <= canvas.width/step ; i++){
+            hb.moveTo(i*step,0)
+            hb.lineTo(i*step,canvas.height)
+        }
+        for(var i =1 ; i <= canvas.height/step ; i++){
+            hb.moveTo(0,i*step)
+            hb.lineTo(canvas.width,i*step)
+        }
+        hb.strokeStyle = '#ccc'
+        hb.stroke()
+        hb.beginPath()
+        hb.moveTo(step*2,step*2)
+        hb.lineTo(step*2-5,step*2+5)
+        hb.lineTo(step*2+5,step*2+5)
+        hb.lineTo(step*2,step*2)
+        hb.lineTo(step*2,canvas.height-step*2)
+        hb.lineTo(canvas.width-step*2,canvas.height-step*2)
+        hb.lineTo(canvas.width-step*2-5,canvas.height-step*2+5)
+        hb.lineTo(canvas.width-step*2-5,canvas.height-step*2-5)
+        hb.lineTo(canvas.width-step*2,canvas.height-step*2)
+        hb.lineTo(step*2,canvas.height-step*2)
+        hb.lineTo(step*2,step*2)
+        hb.fill()
+        hb.fillStyle = 'blue'
+        hb.strokeStyle = 'blue'
+        hb.stroke()
+        hb.beginPath()
+        function random(max,min) {
+            return Math.floor(Math.random()*(max-min))+min
+        }
+        var arr = []
+       for(var i = 0; i<random(10,88);i++){
+            var x = random(canvas.width-step*2,step*2)
+           var y = random(canvas.height-step*2,step*2)
+           arr.push([x,y])
+//            hb.moveTo(x,y)
+           hb.moveTo(x-5,y-5)
+           hb.lineTo(x+5,y-5)
+           hb.lineTo(x+5,y+5)
+           hb.lineTo(x-5,y+5)
+           hb.lineTo(x-5,y-5)
+       }
+        hb.fill()
+       hb.stroke()
+        hb.beginPath()
+//        console.log(arr);
+        //        hb.moveTo(arr[0][0],arr[0][1])
+        for(var i=0; i<arr.length; i++){
+           hb.lineTo(arr[i][0],arr[i][1])
+        }
+        hb.stroke()
+
+
+    </script>
+</body>
+</html>

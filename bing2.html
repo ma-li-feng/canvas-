@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600" height="400"></canvas>
+<script>
+    var canvas = document.querySelector('canvas')
+    var hb = canvas.getContext('2d')
+    hb.moveTo(300,0)
+    hb.lineTo(300,400)
+    hb.stroke()
+    hb.beginPath()
+    hb.moveTo(0,200)
+    hb.lineTo(600,200)
+    hb.stroke()
+    var arr = []
+    var random = Math.floor(Math.random()*360+1)
+    var fen = Math.floor(360/random)
+    var sum = 0
+    for(var i = 0;i<random;i++){
+        var j = Math.floor(Math.random()*random+1)
+        sum+=j
+        arr.push(j)
+    }
+
+    var qishi = 0
+    for(var i = 0; i<arr.length ; i++){
+        hb.beginPath()
+        hb.moveTo(300,200)
+        hb.arc(300,200,100,aTor(qishi),aTor(qishi+=arr[i]/sum*360))
+         hb.fillStyle='rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')'
+         hb.fill()
+    }
+
+    //        hb.stroke()
+
+    function aTor ( angle ) {
+
+        return  angle*Math.PI/180;
+    }
+
+</script>
+</body>
+</html>
